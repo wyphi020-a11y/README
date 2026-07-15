@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeadLine — Never Lose Another Job to a Missed Call</title>
+<meta name="description" content="LeadLine texts your missed calls back in seconds, qualifies the lead, and books the job on your calendar — so no customer ever reaches a competitor first.">
+
+<!-- REPLACE: business name "LeadLine" appears throughout this file — find & replace once you've picked a final name. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy: #101D2C;
+    --navy-light: #1C2E44;
+    --navy-soft: #2A3E58;
+    --offwhite: #F7F8FA;
+    --white: #FFFFFF;
+    --orange: #FF5C1F;
+    --orange-dark: #E04E15;
+    --text-body: #3B4657;
+    --text-muted: #6B7686;
+    --border: #E2E6EC;
+    --font-display: 'Archivo', 'Arial Black', sans-serif;
+    --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --max-width: 1180px;
+    --radius: 14px;
+    --shadow-soft: 0 10px 30px rgba(16, 29, 44, 0.10);
+    --shadow-lift: 0 20px 50px rgba(16, 29, 44, 0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text-body);
+    background: var(--offwhite);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  a { color: inherit; text-decoration: none; }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--navy);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  section { padding: 96px 0; }
+
+  @media (max-width: 720px) {
+    section { padding: 64px 0; }
+  }
+
+  /* Focus states — visible everywhere */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 3px solid var(--orange);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 16px 28px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    white-space: nowrap;
+  }
+  .btn:active { transform: translateY(1px); }
+
+  .btn-primary {
+    background: var(--orange);
+    color: var(--white);
+    box-shadow: 0 6px 18px rgba(255, 92, 31, 0.35);
+  }
+  .btn-primary:hover { background: var(--orange-dark); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--navy);
+    border-color: var(--navy);
+  }
+  .btn-secondary:hover { background: var(--navy); color: var(--white); }
+
+  .btn-ghost-light {
+    background: transparent;
+    color: var(--white);
+    border-color: rgba(255,255,255,0.5);
+  }
+  .btn-ghost-light:hover { background: rgba(255,255,255,0.12); border-color: var(--white); }
+
+  .btn-block { width: 100%; }
+
+  /* ---------- Header ---------- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(247, 248, 250, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.4rem;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+  }
+  .wordmark span { color: var(--orange); }
+
+  .header-actions .btn { padding: 12px 20px; font-size: 0.95rem; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: var(--navy);
+    color: var(--white);
+    padding: 72px 0 96px;
+    overflow: hidden;
+  }
+  .hero .container {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .hero .container { grid-template-columns: 1fr; }
+    .hero { padding: 48px 0 64px; }
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--orange);
+    background: rgba(255, 92, 31, 0.12);
+    border: 1px solid rgba(255, 92, 31, 0.35);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    color: var(--white);
+    font-weight: 900;
+    font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+    margin-bottom: 20px;
+  }
+
+  .hero-sub {
+    color: rgba(255,255,255,0.78);
+    font-size: 1.1rem;
+    max-width: 46ch;
+    margin-bottom: 32px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .hero-note {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ---------- Phone mockup ---------- */
+  .phone-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    perspective: 1400px;
+  }
+
+  .phone {
+    width: 100%;
+    max-width: 340px;
+    background: #0B141C;
+    border-radius: 36px;
+    padding: 14px;
+    box-shadow: var(--shadow-lift), 0 0 0 8px rgba(255,255,255,0.03);
+    transform: rotateY(-8deg) rotateX(3deg);
+    transition: transform 0.4s ease;
+    will-change: transform;
+  }
+
+  .phone-screen {
+    background: linear-gradient(180deg, #F0F4F8 0%, #E7ECF2 100%);
+    border-radius: 24px;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .phone-topbar {
+    background: var(--white);
+    padding: 14px 16px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #E2E6EC;
+    font-family: var(--font-body);
+  }
+  .phone-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+  .phone-contact-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--navy);
+  }
+  .phone-contact-sub {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  .phone-thread {
+    flex: 1;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.86rem;
+  }
+
+  .sms-system {
+    align-self: center;
+    background: rgba(16,29,44,0.08);
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 999px;
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  .sms-bubble {
+    max-width: 82%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    opacity: 0;
+    transform: translateY(10px);
+    line-height: 1.4;
+  }
+
+  .sms-in {
+    align-self: flex-start;
+    background: #E5E9EF;
+    color: var(--text-body);
+    border-bottom-left-radius: 6px;
+  }
+
+  .sms-out {
+    align-self: flex-end;
+    background: var(--orange);
+    color: var(--white);
+    border-bottom-right-radius: 6px;
+    font-weight: 500;
+  }
+
+  .sms-out.confirm {
+    background: var(--navy);
+  }
+
+  .sms-bubble.visible,
+  .sms-system.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+
+  .phone-caption {
+    text-align: center;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.9rem;
+    margin-top: 22px;
+    max-width: 320px;
+  }
+  .phone-caption strong { color: var(--white); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .phone { transform: none; transition: none; }
+    .sms-bubble, .sms-system { transition: none; }
+  }
+
+  /* ---------- How it works ---------- */
+  .section-head {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 56px;
+  }
+  .section-head h2 {
+    font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+    margin-bottom: 14px;
+  }
+  .section-head p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  @media (max-width: 800px) {
+    .steps { grid-template-columns: 1fr; }
+  }
+
+  .step-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    box-shadow: var(--shadow-soft);
+  }
+  .step-num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 2rem;
+    color: var(--orange);
+    margin-bottom: 14px;
+  }
+  .step-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  .step-card p {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+  }
+
+  /* ---------- The math ---------- */
+  .math-section {
+    background: var(--navy-light);
+    color: var(--white);
+  }
+  .math-section .section-head h2 { color: var(--white); }
+  .math-section .section-head p { color: rgba(255,255,255,0.65); }
+
+  .math-card {
+    background: var(--navy);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .math-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: 10px 16px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    margin-bottom: 8px;
+  }
+  .math-row .op { color: rgba(255,255,255,0.4); font-weight: 400; }
+  .math-row .val { color: var(--white); }
+  .math-row .val.highlight { color: var(--orange); }
+
+  .math-equals {
+    margin: 18px 0 8px;
+    padding-top: 18px;
+    border-top: 1px dashed rgba(255,255,255,0.2);
+  }
+  .math-total {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    color: var(--orange);
+  }
+  .math-total-label {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
+  }
+  .math-disclaimer {
+    margin-top: 24px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ---------- Demo section ---------- */
+  .demo-section {
+    text-align: center;
+    background: var(--offwhite);
+  }
+  .demo-section .eyebrow {
+    color: var(--orange-dark);
+    background: rgba(255, 92, 31, 0.1);
+    border-color: rgba(255, 92, 31, 0.3);
+  }
+  .demo-number {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.4rem, 7vw, 4.2rem);
+    color: var(--navy);
+    margin: 18px 0 10px;
+    letter-spacing: -0.02em;
+    border-bottom: 4px solid var(--orange);
+    padding-bottom: 6px;
+    transition: color 0.15s ease;
+  }
+  .demo-number:hover { color: var(--orange); }
+  .demo-section p.demo-sub {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 480px;
+    margin: 0 auto 28px;
+  }
+
+  /* ---------- Testimonials ---------- */
+  .testimonials {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 720px) {
+    .testimonial-grid { grid-template-columns: 1fr; }
+  }
+  .testimonial-card {
+    background: var(--offwhite);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+  }
+  .testimonial-card .quote-mark {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .testimonial-card p.quote {
+    font-size: 1.02rem;
+    color: var(--text-body);
+    font-style: italic;
+    margin-bottom: 18px;
+  }
+  .testimonial-card .attribution {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 0.92rem;
+  }
+  .testimonial-card .attribution span {
+    display: block;
+    font-weight: 400;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 2px;
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta {
+    background: var(--navy);
+    color: var(--white);
+    text-align: center;
+  }
+  .final-cta h2 { color: var(--white); font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
+  .final-cta p {
+    color: rgba(255,255,255,0.72);
+    max-width: 480px;
+    margin: 14px auto 32px;
+    font-size: 1.05rem;
+  }
+  .final-cta .btn { font-size: 1.1rem; padding: 18px 36px; }
+
+  .booking-embed-slot {
+    max-width: 640px;
+    margin: 40px auto 0;
+    border: 1px dashed rgba(255,255,255,0.25);
+    border-radius: var(--radius);
+    padding: 24px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ---------- Footer ---------- */
+  .site-footer {
+    background: #0B1522;
+    color: rgba(255,255,255,0.55);
+    padding: 40px 0;
+    font-size: 0.88rem;
+  }
+  .site-footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .footer-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .footer-links a:hover { color: var(--white); }
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="#top" class="wordmark">Lead<span>Line</span></a>
+    <div class="header-actions">
+      <a class="btn btn-secondary" href="#contact">Book a free call</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-copy">
+        <span class="eyebrow">For Plumbers, HVAC, Electricians &amp; Roofers</span>
+        <h1>Never lose another job to a missed call.</h1>
+        <p class="hero-sub">
+          You're under a sink, up on a roof, or elbow-deep in a panel. The phone rings, you can't get to it —
+          and the caller just dials the next number on the list. That's a $300&ndash;$5,000 job walking straight
+          to your competitor.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="tel:+15555550123">Try the Live Demo &rarr;</a>
+          <a class="btn btn-ghost-light" href="#how-it-works">See How It Works</a>
+        </div>
+        <p class="hero-note">Call (555) 555-0123 — it's live, right now.</p>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="phone" id="phone-mockup">
+          <div class="phone-screen">
+            <div class="phone-topbar">
+              <div class="phone-avatar">MP</div>
+              <div>
+                <div class="phone-contact-name">Mike's Plumbing</div>
+                <div class="phone-contact-sub">Text Message</div>
+              </div>
+            </div>
+            <div class="phone-thread" id="sms-thread">
+              <div class="sms-system" data-step="0">Missed call &middot; 2:14 PM</div>
+              <div class="sms-bubble sms-out" data-step="1">Hi, this is Mike's Plumbing! Sorry we missed your call &mdash; what's going on?</div>
+              <div class="sms-bubble sms-in" data-step="2">Water heater in the garage is leaking bad, need someone today</div>
+              <div class="sms-bubble sms-out" data-step="3">Got it &mdash; that's a fast fix for our team. I can get a tech out this afternoon, 2&ndash;4pm. Work for you?</div>
+              <div class="sms-bubble sms-in" data-step="4">Yes that works</div>
+              <div class="sms-bubble sms-out confirm" data-step="5">&#10003; Appointment booked for today, 2&ndash;4pm. Mike will text when he's on the way.</div>
+            </div>
+          </div>
+        </div>
+        <p class="phone-caption">
+          Total time from missed call to booked job: <strong>90 seconds.</strong> No human involved.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT WORKS ===================== -->
+  <section id="how-it-works">
+    <div class="container">
+      <div class="section-head">
+        <h2>How it works</h2>
+        <p>Three steps. Zero extra work for you.</p>
+      </div>
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h3>A call slips through</h3>
+          <p>Nothing changes about your number. When you don't pick up, that call &mdash; and only that call &mdash; forwards to us.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h3>We text back in seconds</h3>
+          <p>Our AI replies as your business, answers questions, and never quotes a price. Anything urgent or unusual gets kicked straight to you.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h3>The job lands on your calendar</h3>
+          <p>Qualified customers get booked automatically. You see every conversation in an app and can jump in any time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THE MATH ===================== -->
+  <section class="math-section">
+    <div class="container">
+      <div class="section-head">
+        <h2>What a missed call actually costs you</h2>
+        <p>Here's an illustrative example &mdash; plug in your own numbers and see where you land.</p>
+      </div>
+      <div class="math-card">
+        <div class="math-row">
+          <span class="val highlight">10</span><span>recovered calls/mo</span>
+          <span class="op">&times;</span>
+          <span class="val highlight">40%</span><span>booking rate</span>
+          <span class="op">&times;</span>
+          <span class="val highlight">$450</span><span>avg. job</span>
+        </div>
+        <div class="math-equals">
+          <div class="math-total">$1,800/mo</div>
+          <div class="math-total-label">in revenue that would have walked to a competitor</div>
+        </div>
+        <p class="math-disclaimer">Illustrative example only, not a guarantee &mdash; actual results depend on your call volume and close rate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LIVE DEMO ===================== -->
+  <section class="demo-section" id="demo">
+    <div class="container">
+      <span class="eyebrow">The Site Is The Demo</span>
+      <h2>Call it. Hang up. Watch what happens.</h2>
+      <a class="demo-number" href="tel:+15555550123">(555) 555-0123</a>
+      <p class="demo-sub">You'll get a text back in seconds &mdash; the exact experience your customers will have.</p>
+    </div>
+  </section>
+
+  <!-- ===================== TESTIMONIALS ===================== -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-head">
+        <h2>What early clients are saying</h2>
+        <p>We're onboarding our founding clients now &mdash; real quotes are coming soon.</p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <span class="quote-mark">&ldquo;</span>
+          <p class="quote">[Placeholder &mdash; swap in a founding client's quote once you have one, e.g. "We picked up three jobs in the first week that would've just gone to voicemail before."]</p>
+          <div class="attribution">[Client Name]<span>[Business Name], [Trade / City]</span></div>
+        </div>
+        <div class="testimonial-card">
+          <span class="quote-mark">&ldquo;</span>
+          <p class="quote">[Placeholder &mdash; swap in a second founding client's quote, e.g. "It text-backs faster than I could ever call someone back myself."]</p>
+          <div class="attribution">[Client Name]<span>[Business Name], [Trade / City]</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL CTA ===================== -->
+  <section class="final-cta" id="contact">
+    <div class="container">
+      <h2>Find out how many calls you're losing.</h2>
+      <p>15 minutes. No pitch deck. Just your numbers.</p>
+      <a class="btn btn-primary" href="tel:+15555550123">Book a Free Call</a>
+
+      <!-- PLACEHOLDER: paste your GoHighLevel booking calendar embed code here, replacing this div. -->
+      <div class="booking-embed-slot" id="ghl-booking-embed">
+        GHL booking calendar embed goes here
+      </div>
+      <!-- END GHL booking calendar placeholder -->
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div>&copy; 2026 LeadLine. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="mailto:hello@leadline.com">hello@leadline.com</a>
+      <a href="tel:+15555550123">(555) 555-0123</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---- SMS thread sequential reveal ----
+    var thread = document.getElementById('sms-thread');
+    var bubbles = thread ? Array.prototype.slice.call(thread.querySelectorAll('[data-step]')) : [];
+    var played = false;
+
+    function playSequence() {
+      if (played || !bubbles.length) return;
+      played = true;
+
+      if (reduceMotion) {
+        bubbles.forEach(function (el) {
+          el.classList.add('visible');
+        });
+        return;
+      }
+
+      bubbles.forEach(function (el, i) {
+        setTimeout(function () {
+          el.classList.add('visible');
+        }, i * 750);
+      });
+    }
+
+    var phoneEl = document.getElementById('phone-mockup');
+    if (phoneEl && 'IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            playSequence();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+      observer.observe(phoneEl);
+    } else {
+      playSequence();
+    }
+
+    // ---- Subtle pointer tilt on hero phone (disabled for reduced motion / touch) ----
+    if (!reduceMotion && phoneEl && window.matchMedia('(hover: hover)').matches) {
+      var heroEl = document.querySelector('.hero');
+      heroEl.addEventListener('mousemove', function (e) {
+        var rect = heroEl.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width - 0.5;
+        var y = (e.clientY - rect.top) / rect.height - 0.5;
+        phoneEl.style.transform = 'rotateY(' + (-8 + x * 10) + 'deg) rotateX(' + (3 - y * 8) + 'deg)';
+      });
+      heroEl.addEventListener('mouseleave', function () {
+        phoneEl.style.transform = 'rotateY(-8deg) rotateX(3deg)';
+      });
+    }
+  })();
+</script>
+
+<!-- PLACEHOLDER: paste your GoHighLevel chat widget embed snippet here, just before </body>. -->
+
+</body>
+</html>
