@@ -3,57 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LeadLine — Never Lose Another Job to a Missed Call</title>
-<meta name="description" content="LeadLine texts your missed calls back in seconds, qualifies the lead, and books the job on your calendar — so no customer ever reaches a competitor first.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101D2C'/%3E%3Ctext x='32' y='45' font-family='Arial, sans-serif' font-weight='900' font-size='34' fill='%23FF5C1F' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E">
+<title>RingFix — The AI Receptionist That Never Misses a Call</title>
+<meta name="description" content="RingFix answers every missed call for your trades business in seconds, texts the customer back, qualifies the job, and books it on your calendar — 24/7, no human required.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2305070c'/%3E%3Cpath d='M20 24c0-2 2-4 4-4h4l3 7-3 3c1.5 4 4.5 7 8.5 8.5l3-3 7 3v4c0 2-2 4-4 4C29 46.5 20 37.5 18 24' fill='%23FF6A2B'/%3E%3C/svg%3E">
 
-<!-- REPLACE: business name "LeadLine" appears throughout this file — find & replace once you've picked a final name. -->
+<!-- REPLACE: business name "RingFix" appears throughout this file — find & replace once you've picked a final name. -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --navy: #101D2C;
-    --navy-light: #1C2E44;
-    --navy-soft: #2A3E58;
-    --offwhite: #F7F8FA;
-    --white: #FFFFFF;
-    --orange: #FF5C1F;
-    --orange-dark: #E04E15;
-    --text-body: #3B4657;
-    --text-muted: #6B7686;
-    --border: #E2E6EC;
-    --font-display: 'Archivo', 'Arial Black', sans-serif;
-    --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    --max-width: 1180px;
-    --radius: 14px;
-    --shadow-soft: 0 10px 30px rgba(16, 29, 44, 0.10);
-    --shadow-lift: 0 20px 50px rgba(16, 29, 44, 0.18);
+    --bg: #05070c;
+    --bg-2: #090d18;
+    --surface: rgba(255,255,255,0.045);
+    --surface-solid: #0d1220;
+    --surface-2: rgba(255,255,255,0.07);
+    --border: rgba(255,255,255,0.10);
+    --border-strong: rgba(255,255,255,0.18);
+    --ink: #F4F6FA;
+    --muted: #97A2B8;
+    --muted-2: #6E7A90;
+    --orange: #FF6A2B;
+    --orange-light: #FF9159;
+    --orange-dark: #DE5015;
+    --cyan: #3FE0C5;
+    --cyan-dim: #2AA894;
+    --blue: #5B8CFF;
+    --font-display: 'Space Grotesk', 'Arial', sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --max-width: 1200px;
+    --radius: 18px;
+    --radius-sm: 12px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; background: var(--bg); }
 
   body {
     font-family: var(--font-body);
-    color: var(--text-body);
-    background: var(--offwhite);
-    line-height: 1.55;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
   }
 
-  img { max-width: 100%; display: block; }
-
+  img, svg { max-width: 100%; display: block; }
   a { color: inherit; text-decoration: none; }
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    color: var(--navy);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    font-weight: 700;
   }
 
   .container {
@@ -61,20 +69,70 @@
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 24px;
+    position: relative;
+    z-index: 2;
   }
 
-  section { padding: 96px 0; }
+  section { padding: 130px 0; position: relative; }
+  @media (max-width: 900px) { section { padding: 84px 0; } }
 
-  @media (max-width: 720px) {
-    section { padding: 64px 0; }
+  .text-gradient {
+    background: linear-gradient(100deg, var(--orange) 5%, var(--orange-light) 45%, var(--cyan) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
-  /* Focus states — visible everywhere */
-  a:focus-visible,
-  button:focus-visible {
-    outline: 3px solid var(--orange);
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--cyan);
     outline-offset: 3px;
     border-radius: 4px;
+  }
+
+  ::selection { background: var(--orange); color: #08050a; }
+
+  /* ---------- Ambient 3D parallax background ---------- */
+  .bg-field {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background: radial-gradient(ellipse 120% 80% at 50% -10%, #10152a 0%, var(--bg) 55%);
+  }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.55;
+    will-change: transform;
+  }
+  .blob-1 { width: 640px; height: 640px; top: -180px; left: -160px; background: radial-gradient(circle, var(--orange) 0%, transparent 70%); opacity: 0.35; }
+  .blob-2 { width: 560px; height: 560px; top: 420px; right: -220px; background: radial-gradient(circle, var(--cyan) 0%, transparent 70%); opacity: 0.28; }
+  .blob-3 { width: 700px; height: 700px; top: 1300px; left: 10%; background: radial-gradient(circle, var(--blue) 0%, transparent 70%); opacity: 0.22; }
+  .blob-4 { width: 520px; height: 520px; top: 2400px; right: 5%; background: radial-gradient(circle, var(--orange) 0%, transparent 70%); opacity: 0.22; }
+  .blob-5 { width: 600px; height: 600px; top: 3400px; left: -180px; background: radial-gradient(circle, var(--cyan) 0%, transparent 70%); opacity: 0.24; }
+
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 75%);
+  }
+
+  .noise {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blob { transition: none !important; }
   }
 
   /* ---------- Buttons ---------- */
@@ -86,199 +144,249 @@
     font-family: var(--font-body);
     font-weight: 700;
     font-size: 1rem;
-    padding: 16px 28px;
-    border-radius: 10px;
-    border: 2px solid transparent;
+    padding: 16px 30px;
+    border-radius: 999px;
+    border: 1px solid transparent;
     cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background-color 0.2s var(--ease), border-color 0.2s var(--ease);
     white-space: nowrap;
   }
-  .btn:active { transform: translateY(1px); }
+  .btn:active { transform: translateY(1px) scale(0.98); }
 
   .btn-primary {
-    background: var(--orange);
-    color: var(--white);
-    box-shadow: 0 6px 18px rgba(255, 92, 31, 0.35);
+    background: linear-gradient(100deg, var(--orange), var(--orange-dark));
+    color: #fff;
+    box-shadow: 0 8px 28px rgba(255, 106, 43, 0.35), inset 0 1px 0 rgba(255,255,255,0.25);
   }
-  .btn-primary:hover { background: var(--orange-dark); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(255, 106, 43, 0.48), inset 0 1px 0 rgba(255,255,255,0.25); }
 
-  .btn-secondary {
-    background: transparent;
-    color: var(--navy);
-    border-color: var(--navy);
+  .btn-ghost {
+    background: rgba(255,255,255,0.04);
+    color: var(--ink);
+    border-color: var(--border-strong);
+    backdrop-filter: blur(6px);
   }
-  .btn-secondary:hover { background: var(--navy); color: var(--white); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.3); transform: translateY(-2px); }
 
-  .btn-ghost-light {
-    background: transparent;
-    color: var(--white);
-    border-color: rgba(255,255,255,0.5);
-  }
-  .btn-ghost-light:hover { background: rgba(255,255,255,0.12); border-color: var(--white); }
-
-  .btn-block { width: 100%; }
+  .btn-lg { font-size: 1.1rem; padding: 19px 38px; }
 
   /* ---------- Header ---------- */
   .site-header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(247, 248, 250, 0.88);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(5, 7, 12, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
   }
   .site-header .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 76px;
+    height: 78px;
   }
   .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 1.4rem;
-    color: var(--navy);
+    font-weight: 700;
+    font-size: 1.3rem;
     letter-spacing: -0.02em;
   }
-  .wordmark span { color: var(--orange); }
-
-  .header-actions .btn { padding: 12px 20px; font-size: 0.95rem; }
+  .wordmark .mark {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--orange), var(--cyan));
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 14px rgba(255,106,43,0.4);
+  }
+  .wordmark .mark svg { width: 18px; height: 18px; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-size: 0.92rem; font-weight: 600; color: var(--muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+  @media (max-width: 780px) { .nav-links { display: none; } }
+  .header-actions .btn { padding: 12px 22px; font-size: 0.92rem; }
 
   /* ---------- Hero ---------- */
-  .hero {
-    background: var(--navy);
-    color: var(--white);
-    padding: 72px 0 96px;
-    overflow: hidden;
-  }
+  .hero { padding: 84px 0 60px; perspective: 1600px; }
   .hero .container {
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
-    gap: 56px;
+    gap: 40px;
     align-items: center;
   }
-  @media (max-width: 900px) {
+  @media (max-width: 960px) {
     .hero .container { grid-template-columns: 1fr; }
-    .hero { padding: 48px 0 64px; }
+    .hero { padding: 48px 0 40px; }
   }
 
   .eyebrow {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-family: var(--font-body);
     font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: var(--orange);
-    background: rgba(255, 92, 31, 0.12);
-    border: 1px solid rgba(255, 92, 31, 0.35);
-    padding: 6px 14px;
+    color: var(--orange-light);
+    background: rgba(255, 106, 43, 0.1);
+    border: 1px solid rgba(255, 106, 43, 0.3);
+    padding: 8px 16px;
     border-radius: 999px;
-    margin-bottom: 20px;
+    margin-bottom: 26px;
+  }
+  .eyebrow .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
   }
 
   .hero h1 {
-    color: var(--white);
-    font-weight: 900;
-    font-size: clamp(2.2rem, 4.6vw, 3.4rem);
-    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: clamp(2.4rem, 4.8vw, 3.9rem);
+    margin-bottom: 24px;
   }
 
   .hero-sub {
-    color: rgba(255,255,255,0.78);
-    font-size: 1.1rem;
-    max-width: 46ch;
-    margin-bottom: 32px;
+    color: var(--muted);
+    font-size: 1.15rem;
+    max-width: 50ch;
+    margin-bottom: 36px;
   }
 
-  .hero-ctas {
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 30px; }
+
+  .hero-stats {
     display: flex;
+    gap: 34px;
     flex-wrap: wrap;
-    gap: 14px;
-    margin-bottom: 14px;
+    padding-top: 26px;
+    border-top: 1px solid var(--border);
   }
-
-  .hero-note {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.55);
+  .hero-stat .num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.7rem;
+    color: var(--ink);
   }
+  .hero-stat .num span { color: var(--orange-light); }
+  .hero-stat .label { font-size: 0.82rem; color: var(--muted-2); margin-top: 2px; }
 
-  /* ---------- Phone mockup ---------- */
-  .phone-wrap {
+  /* ---------- 3D phone scene ---------- */
+  .phone-scene {
+    position: relative;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    perspective: 1400px;
+    perspective: 1500px;
+    min-height: 560px;
+  }
+
+  .float-card {
+    position: absolute;
+    background: rgba(13, 18, 32, 0.75);
+    border: 1px solid var(--border-strong);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 14px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+    will-change: transform;
+    z-index: 3;
+  }
+  .float-card .ic {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .float-card .ic svg { width: 15px; height: 15px; }
+  .float-card .title { color: var(--ink); }
+  .float-card .sub { color: var(--muted-2); font-weight: 500; font-size: 0.74rem; }
+
+  .card-missed { top: 4%; left: -4%; }
+  .card-missed .ic { background: rgba(255,106,43,0.18); color: var(--orange-light); }
+
+  .card-booked { bottom: 10%; right: -8%; }
+  .card-booked .ic { background: rgba(63,224,197,0.18); color: var(--cyan); }
+
+  .card-speed { top: 40%; right: -12%; }
+  .card-speed .ic { background: rgba(91,140,255,0.2); color: var(--blue); }
+
+  @media (max-width: 620px) {
+    .float-card { display: none; }
+    .phone-scene { min-height: 480px; }
   }
 
   .phone {
     width: 100%;
-    max-width: 340px;
-    background: #0B141C;
-    border-radius: 36px;
+    max-width: 330px;
+    background: linear-gradient(160deg, #14192b, #0a0e1a);
+    border-radius: 40px;
     padding: 14px;
-    box-shadow: var(--shadow-lift), 0 0 0 8px rgba(255,255,255,0.03);
-    transform: rotateY(-8deg) rotateX(3deg);
-    transition: transform 0.4s ease;
+    box-shadow: 0 40px 90px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.08);
+    transform: rotateY(-10deg) rotateX(4deg) translateZ(0);
+    transition: transform 0.35s var(--ease);
     will-change: transform;
+    position: relative;
+    z-index: 2;
   }
 
   .phone-screen {
-    background: linear-gradient(180deg, #F0F4F8 0%, #E7ECF2 100%);
-    border-radius: 24px;
-    min-height: 480px;
+    background: linear-gradient(180deg, #0d1220 0%, #090c16 100%);
+    border-radius: 28px;
+    min-height: 500px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
   }
 
   .phone-topbar {
-    background: var(--white);
-    padding: 14px 16px 10px;
+    background: rgba(255,255,255,0.03);
+    padding: 16px 18px 12px;
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: 1px solid #E2E6EC;
-    font-family: var(--font-body);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
   .phone-avatar {
-    width: 34px;
-    height: 34px;
+    width: 34px; height: 34px;
     border-radius: 50%;
-    background: var(--navy);
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 0.8rem;
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.78rem;
     flex-shrink: 0;
   }
-  .phone-contact-name {
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--navy);
-  }
-  .phone-contact-sub {
-    font-size: 0.72rem;
-    color: var(--text-muted);
-  }
+  .phone-contact-name { font-weight: 700; font-size: 0.9rem; color: var(--ink); }
+  .phone-contact-sub { font-size: 0.72rem; color: var(--muted-2); }
+  .phone-status { margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 0.68rem; color: var(--cyan); font-weight: 700; }
+  .phone-status .pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); animation: pulse 1.6s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
 
   .phone-thread {
     flex: 1;
-    padding: 16px 12px;
+    padding: 18px 14px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    font-size: 0.86rem;
+    font-size: 0.85rem;
   }
 
   .sms-system {
     align-self: center;
-    background: rgba(16,29,44,0.08);
-    color: var(--text-muted);
-    font-size: 0.72rem;
+    background: rgba(255,255,255,0.06);
+    color: var(--muted-2);
+    font-size: 0.7rem;
     font-weight: 600;
     padding: 5px 12px;
     border-radius: 999px;
@@ -287,288 +395,246 @@
   }
 
   .sms-bubble {
-    max-width: 82%;
-    padding: 10px 14px;
+    max-width: 84%;
+    padding: 11px 15px;
     border-radius: 18px;
     opacity: 0;
     transform: translateY(10px);
-    line-height: 1.4;
+    line-height: 1.42;
   }
+  .sms-in { align-self: flex-start; background: rgba(255,255,255,0.08); color: #E7EBF2; border-bottom-left-radius: 6px; }
+  .sms-out { align-self: flex-end; background: linear-gradient(120deg, var(--orange), var(--orange-dark)); color: #fff; border-bottom-right-radius: 6px; font-weight: 500; }
+  .sms-out.confirm { background: linear-gradient(120deg, var(--cyan), var(--cyan-dim)); color: #06251f; font-weight: 700; }
 
-  .sms-in {
-    align-self: flex-start;
-    background: #E5E9EF;
-    color: var(--text-body);
-    border-bottom-left-radius: 6px;
+  .sms-bubble.visible, .sms-system.visible {
+    opacity: 1; transform: translateY(0);
+    transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
   }
-
-  .sms-out {
-    align-self: flex-end;
-    background: var(--orange);
-    color: var(--white);
-    border-bottom-right-radius: 6px;
-    font-weight: 500;
-  }
-
-  .sms-out.confirm {
-    background: var(--navy);
-  }
-
-  .sms-bubble.visible,
-  .sms-system.visible {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.45s ease, transform 0.45s ease;
-  }
-
-  .phone-caption {
-    text-align: center;
-    color: rgba(255,255,255,0.75);
-    font-size: 0.9rem;
-    margin-top: 22px;
-    max-width: 320px;
-  }
-  .phone-caption strong { color: var(--white); }
 
   @media (prefers-reduced-motion: reduce) {
-    .phone { transform: none; transition: none; }
+    .phone { transform: none !important; transition: none; }
     .sms-bubble, .sms-system { transition: none; }
+    .float-card { transform: none !important; }
   }
 
-  /* ---------- How it works ---------- */
-  .section-head {
-    text-align: center;
-    max-width: 640px;
-    margin: 0 auto 56px;
-  }
-  .section-head h2 {
-    font-size: clamp(1.8rem, 3.4vw, 2.4rem);
-    margin-bottom: 14px;
-  }
-  .section-head p {
-    color: var(--text-muted);
-    font-size: 1.05rem;
-  }
+  /* ---------- Reveal-on-scroll ---------- */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-  }
-  @media (max-width: 800px) {
-    .steps { grid-template-columns: 1fr; }
-  }
+  /* ---------- Section heads ---------- */
+  .section-head { text-align: center; max-width: 660px; margin: 0 auto 64px; }
+  .section-head .eyebrow { margin-bottom: 18px; }
+  .section-head h2 { font-size: clamp(1.9rem, 3.6vw, 2.6rem); margin-bottom: 16px; }
+  .section-head p { color: var(--muted); font-size: 1.08rem; }
 
-  .step-card {
-    background: var(--white);
+  /* ---------- Stat / problem section ---------- */
+  .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 820px) { .stat-grid { grid-template-columns: 1fr; } }
+
+  .glass-card {
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 32px 28px;
-    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.35s var(--ease), border-color 0.3s, background 0.3s;
+    will-change: transform;
   }
+
+  .stat-card { padding: 38px 32px; text-align: center; }
+  .stat-card .big { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.4rem, 5vw, 3.2rem); margin-bottom: 10px; }
+  .stat-card .big.orange { color: var(--orange-light); }
+  .stat-card .big.cyan { color: var(--cyan); }
+  .stat-card .big.blue { color: var(--blue); }
+  .stat-card p { color: var(--muted); font-size: 0.98rem; }
+
+  .tilt-hover:hover { border-color: var(--border-strong); background: rgba(255,255,255,0.065); }
+
+  /* ---------- How it works ---------- */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; counter-reset: step; }
+  @media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
+
+  .step-card { padding: 36px 30px; position: relative; overflow: hidden; }
+  .step-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 20% 0%, rgba(255,106,43,0.12), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .step-card:hover::before { opacity: 1; }
   .step-num {
     font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 2rem;
-    color: var(--orange);
-    margin-bottom: 14px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--orange-light);
+    background: rgba(255,106,43,0.12);
+    border: 1px solid rgba(255,106,43,0.3);
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 22px;
   }
-  .step-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-  .step-card p {
-    color: var(--text-muted);
-    font-size: 0.98rem;
-  }
+  .step-card h3 { font-size: 1.25rem; margin-bottom: 12px; position: relative; }
+  .step-card p { color: var(--muted); font-size: 0.98rem; position: relative; }
 
-  /* ---------- The math ---------- */
-  .math-section {
-    background: var(--navy-light);
-    color: var(--white);
-  }
-  .math-section .section-head h2 { color: var(--white); }
-  .math-section .section-head p { color: rgba(255,255,255,0.65); }
+  /* ---------- Feature grid ---------- */
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  @media (max-width: 900px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .feature-grid { grid-template-columns: 1fr; } }
 
+  .feature-card { padding: 28px 26px; }
+  .feature-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(255,106,43,0.2), rgba(63,224,197,0.15));
+    border: 1px solid var(--border-strong);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+  }
+  .feature-icon svg { width: 20px; height: 20px; color: var(--orange-light); }
+  .feature-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .feature-card p { color: var(--muted); font-size: 0.92rem; }
+
+  /* ---------- Math / ROI section ---------- */
   .math-card {
-    background: var(--navy);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: var(--radius);
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
-    padding: 40px;
+    padding: 48px 40px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
   }
-
+  .math-card::after {
+    content: '';
+    position: absolute;
+    top: -40%; left: 50%;
+    width: 500px; height: 500px;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(255,106,43,0.18), transparent 70%);
+    pointer-events: none;
+  }
   .math-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: baseline;
-    gap: 10px 16px;
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline;
+    gap: 10px 18px;
     font-family: var(--font-display);
-    font-weight: 800;
+    font-weight: 700;
     font-size: clamp(1.1rem, 3vw, 1.6rem);
     margin-bottom: 8px;
+    position: relative;
   }
-  .math-row .op { color: rgba(255,255,255,0.4); font-weight: 400; }
-  .math-row .val { color: var(--white); }
-  .math-row .val.highlight { color: var(--orange); }
+  .math-row .op { color: var(--muted-2); font-weight: 400; }
+  .math-row .val { color: var(--ink); }
+  .math-row .val.highlight { color: var(--orange-light); }
+  .math-row .lbl { font-family: var(--font-body); font-weight: 500; font-size: 0.95rem; color: var(--muted); }
 
-  .math-equals {
-    margin: 18px 0 8px;
-    padding-top: 18px;
-    border-top: 1px dashed rgba(255,255,255,0.2);
-  }
-  .math-total {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: clamp(2.2rem, 5vw, 3rem);
-    color: var(--orange);
-  }
-  .math-total-label {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.6);
-    margin-top: 4px;
-  }
-  .math-disclaimer {
-    margin-top: 24px;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.5);
-  }
+  .math-equals { margin: 24px 0 8px; padding-top: 24px; border-top: 1px dashed var(--border-strong); position: relative; }
+  .math-total { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.4rem, 6vw, 3.4rem); }
+  .math-total-label { font-size: 0.92rem; color: var(--muted); margin-top: 6px; position: relative; }
+  .math-disclaimer { margin-top: 28px; font-size: 0.82rem; color: var(--muted-2); position: relative; }
 
   /* ---------- Demo section ---------- */
-  .demo-section {
-    text-align: center;
-    background: var(--offwhite);
-  }
-  .demo-section .eyebrow {
-    color: var(--orange-dark);
-    background: rgba(255, 92, 31, 0.1);
-    border-color: rgba(255, 92, 31, 0.3);
+  .demo-section { text-align: center; }
+  .demo-card {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 56px 40px;
+    position: relative;
   }
   .demo-number {
     display: inline-block;
     font-family: var(--font-display);
-    font-weight: 900;
-    font-size: clamp(2.4rem, 7vw, 4.2rem);
-    color: var(--navy);
-    margin: 18px 0 10px;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 6.5vw, 3.6rem);
+    margin: 20px 0 12px;
     letter-spacing: -0.02em;
-    border-bottom: 4px solid var(--orange);
-    padding-bottom: 6px;
-    transition: color 0.15s ease;
+    transition: transform 0.2s var(--ease);
   }
-  .demo-number:hover { color: var(--orange); }
-  .demo-section p.demo-sub {
-    color: var(--text-muted);
-    font-size: 1.05rem;
-    max-width: 480px;
-    margin: 0 auto 28px;
-  }
+  .demo-number:hover { transform: scale(1.03); }
+  .demo-section p.demo-sub { color: var(--muted); font-size: 1.05rem; max-width: 480px; margin: 0 auto 30px; }
 
   /* ---------- Testimonials ---------- */
-  .testimonials {
-    background: var(--white);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-  }
-  @media (max-width: 720px) {
-    .testimonial-grid { grid-template-columns: 1fr; }
-  }
-  .testimonial-card {
-    background: var(--offwhite);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 32px;
-  }
+  .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+  @media (max-width: 760px) { .testimonial-grid { grid-template-columns: 1fr; } }
+  .testimonial-card { padding: 34px; }
   .testimonial-card .quote-mark {
     font-family: var(--font-display);
-    font-size: 2.4rem;
-    color: var(--orange);
+    font-size: 2.6rem;
+    color: var(--orange-light);
     line-height: 1;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     display: block;
   }
-  .testimonial-card p.quote {
-    font-size: 1.02rem;
-    color: var(--text-body);
-    font-style: italic;
-    margin-bottom: 18px;
-  }
-  .testimonial-card .attribution {
-    font-weight: 700;
-    color: var(--navy);
-    font-size: 0.92rem;
-  }
-  .testimonial-card .attribution span {
-    display: block;
-    font-weight: 400;
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    margin-top: 2px;
-  }
+  .testimonial-card p.quote { font-size: 1.02rem; color: #DCE1EA; font-style: italic; margin-bottom: 20px; }
+  .testimonial-card .attribution { font-weight: 700; color: var(--ink); font-size: 0.92rem; }
+  .testimonial-card .attribution span { display: block; font-weight: 400; color: var(--muted-2); font-size: 0.85rem; margin-top: 2px; }
 
   /* ---------- Final CTA ---------- */
-  .final-cta {
-    background: var(--navy);
-    color: var(--white);
-    text-align: center;
+  .final-cta { text-align: center; }
+  .final-cta-card {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 48px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(160deg, rgba(255,106,43,0.1), rgba(63,224,197,0.06));
   }
-  .final-cta h2 { color: var(--white); font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
-  .final-cta p {
-    color: rgba(255,255,255,0.72);
-    max-width: 480px;
-    margin: 14px auto 32px;
-    font-size: 1.05rem;
-  }
-  .final-cta .btn { font-size: 1.1rem; padding: 18px 36px; }
+  .final-cta h2 { font-size: clamp(2rem, 3.8vw, 2.7rem); margin-bottom: 16px; }
+  .final-cta p { color: var(--muted); max-width: 480px; margin: 0 auto 34px; font-size: 1.05rem; }
+  .final-cta .btn { font-size: 1.1rem; padding: 18px 38px; }
 
   .booking-embed-slot {
-    max-width: 640px;
+    max-width: 620px;
     margin: 40px auto 0;
-    border: 1px dashed rgba(255,255,255,0.25);
-    border-radius: var(--radius);
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-sm);
     padding: 24px;
     font-size: 0.85rem;
-    color: rgba(255,255,255,0.4);
+    color: var(--muted-2);
   }
 
   /* ---------- Footer ---------- */
   .site-footer {
-    background: #0B1522;
-    color: rgba(255,255,255,0.55);
-    padding: 40px 0;
+    padding: 48px 0;
     font-size: 0.88rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted-2);
   }
-  .site-footer .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-  }
-  .footer-links {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  .footer-links a:hover { color: var(--white); }
+  .site-footer .container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+  .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .footer-links a:hover { color: var(--ink); }
 
 </style>
 </head>
 <body>
 
+<div class="bg-field" aria-hidden="true">
+  <div class="blob blob-1" data-speed="0.12"></div>
+  <div class="blob blob-2" data-speed="0.22"></div>
+  <div class="blob blob-3" data-speed="0.08"></div>
+  <div class="blob blob-4" data-speed="0.18"></div>
+  <div class="blob blob-5" data-speed="0.1"></div>
+  <div class="grid-overlay"></div>
+  <div class="noise"></div>
+</div>
+
 <header class="site-header">
   <div class="container">
-    <a href="#top" class="wordmark">Lead<span>Line</span></a>
+    <a href="#top" class="wordmark">
+      <span class="mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 8c0-1.1 0.9-2 2-2h1.2l1.5 3.5-1.4 1.4c0.9 2.3 2.7 4.1 5 5l1.4-1.4L19 16v1.2c0 1.1-0.9 2-2 2C10.4 19.2 4.8 13.6 4.8 7" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Ring<span class="text-gradient">Fix</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#demo">Live Demo</a>
+      <a href="#testimonials">Results</a>
+    </nav>
     <div class="header-actions">
-      <a class="btn btn-secondary" href="#contact">Book a free call</a>
+      <a class="btn btn-ghost" href="#contact">Book a Free Call</a>
     </div>
   </div>
 </header>
@@ -579,21 +645,63 @@
   <section class="hero">
     <div class="container">
       <div class="hero-copy">
-        <span class="eyebrow">For Plumbers, HVAC, Electricians &amp; Roofers</span>
-        <h1>Never lose another job to a missed call.</h1>
+        <span class="eyebrow"><span class="dot"></span>For Plumbers, HVAC, Electricians &amp; Roofers</span>
+        <h1>Every missed call<br>becomes a <span class="text-gradient">booked job.</span></h1>
         <p class="hero-sub">
-          You're under a sink, up on a roof, or elbow-deep in a panel. The phone rings, you can't get to it —
-          and the caller just dials the next number on the list. That's a $300&ndash;$5,000 job walking straight
-          to your competitor.
+          You're under a sink, on a roof, or elbow-deep in a panel. RingFix answers instantly, texts the
+          customer back, qualifies the job, and puts it on your calendar — before they ever dial your competitor.
         </p>
         <div class="hero-ctas">
-          <a class="btn btn-primary" href="tel:+15555550123">Try the Live Demo &rarr;</a>
-          <a class="btn btn-ghost-light" href="#how-it-works">See How It Works</a>
+          <a class="btn btn-primary btn-lg" href="tel:+15555550123">Try the Live Demo &rarr;</a>
+          <a class="btn btn-ghost btn-lg" href="#how-it-works">See How It Works</a>
         </div>
-        <p class="hero-note">Call (555) 555-0123 — it's live, right now.</p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="num"><span>&lt;60s</span></div>
+            <div class="label">avg. response time</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num"><span>24/7</span></div>
+            <div class="label">always answering</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num"><span>0</span></div>
+            <div class="label">calls lost to voicemail</div>
+          </div>
+        </div>
       </div>
 
-      <div class="phone-wrap">
+      <div class="phone-scene" id="phone-scene">
+        <div class="float-card card-missed" data-depth="30">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 6l4-2 3 5-2 2c1 3 3 5 6 6l2-2 5 3-2 4c-8 1-15-6-16-14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="title">Missed Call</div>
+            <div class="sub">Text sent in 8s</div>
+          </div>
+        </div>
+
+        <div class="float-card card-speed" data-depth="45">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="title">Answered instantly</div>
+            <div class="sub">No hold music</div>
+          </div>
+        </div>
+
+        <div class="float-card card-booked" data-depth="24">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="title">Job Booked</div>
+            <div class="sub">$450 · 2&ndash;4pm today</div>
+          </div>
+        </div>
+
         <div class="phone" id="phone-mockup">
           <div class="phone-screen">
             <div class="phone-topbar">
@@ -602,6 +710,7 @@
                 <div class="phone-contact-name">Mike's Plumbing</div>
                 <div class="phone-contact-sub">Text Message</div>
               </div>
+              <div class="phone-status"><span class="pulse"></span>LIVE</div>
             </div>
             <div class="phone-thread" id="sms-thread">
               <div class="sms-system" data-step="0">Missed call &middot; 2:14 PM</div>
@@ -613,9 +722,31 @@
             </div>
           </div>
         </div>
-        <p class="phone-caption">
-          Total time from missed call to booked job: <strong>90 seconds.</strong> No human involved.
-        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROBLEM / STATS ===================== -->
+  <section id="problem">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="dot"></span>The Problem</span>
+        <h2>Every unanswered call is revenue walking to a competitor</h2>
+        <p>Trades businesses miss a huge share of inbound calls simply because someone's hands are full doing the job that pays the bills.</p>
+      </div>
+      <div class="stat-grid">
+        <div class="glass-card stat-card tilt-hover reveal">
+          <div class="big orange">27%</div>
+          <p>of calls to home service businesses go unanswered during business hours</p>
+        </div>
+        <div class="glass-card stat-card tilt-hover reveal" style="transition-delay:0.08s">
+          <div class="big cyan">85%</div>
+          <p>of callers who hit voicemail never call back &mdash; they just call the next name on the list</p>
+        </div>
+        <div class="glass-card stat-card tilt-hover reveal" style="transition-delay:0.16s">
+          <div class="big blue">$1,800+</div>
+          <p>in average monthly revenue lost to missed calls for a single-truck operation</p>
+        </div>
       </div>
     </div>
   </section>
@@ -623,47 +754,92 @@
   <!-- ===================== HOW IT WORKS ===================== -->
   <section id="how-it-works">
     <div class="container">
-      <div class="section-head">
-        <h2>How it works</h2>
-        <p>Three steps. Zero extra work for you.</p>
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="dot"></span>How It Works</span>
+        <h2>Three steps. Zero extra work for you.</h2>
+        <p>RingFix plugs into the number you already have &mdash; nothing to switch, nothing to learn.</p>
       </div>
       <div class="steps">
-        <div class="step-card">
+        <div class="glass-card step-card tilt-hover reveal">
           <div class="step-num">01</div>
           <h3>A call slips through</h3>
-          <p>Nothing changes about your number. When you don't pick up, that call &mdash; and only that call &mdash; forwards to us.</p>
+          <p>Nothing changes about your number. When you don't pick up, that call &mdash; and only that call &mdash; forwards to RingFix.</p>
         </div>
-        <div class="step-card">
+        <div class="glass-card step-card tilt-hover reveal" style="transition-delay:0.08s">
           <div class="step-num">02</div>
-          <h3>We text back in seconds</h3>
-          <p>Our AI replies as your business, answers questions, and never quotes a price. Anything urgent or unusual gets kicked straight to you.</p>
+          <h3>The AI answers &amp; fixes the issue</h3>
+          <p>RingFix texts back as your business, diagnoses what's needed, answers questions, and never quotes a price. Emergencies get kicked straight to you.</p>
         </div>
-        <div class="step-card">
+        <div class="glass-card step-card tilt-hover reveal" style="transition-delay:0.16s">
           <div class="step-num">03</div>
           <h3>The job lands on your calendar</h3>
-          <p>Qualified customers get booked automatically. You see every conversation in an app and can jump in any time.</p>
+          <p>Qualified customers get booked automatically. You see every conversation in one dashboard and can jump in any time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURES ===================== -->
+  <section id="features">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="dot"></span>What It Does</span>
+        <h2>Built specifically for trades &mdash; not a generic chatbot</h2>
+        <p>RingFix knows the difference between "my AC is out" and "my breaker tripped" &mdash; and handles both correctly.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="glass-card feature-card tilt-hover reveal">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+          <h3>Instant Pickup</h3>
+          <p>Every missed call gets a reply in under 60 seconds &mdash; day, night, weekends, holidays.</p>
+        </div>
+        <div class="glass-card feature-card tilt-hover reveal" style="transition-delay:0.06s">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <h3>Sounds Like Your Business</h3>
+          <p>Trained on your services, service area, and pricing rules &mdash; not a robotic script.</p>
+        </div>
+        <div class="glass-card feature-card tilt-hover reveal" style="transition-delay:0.12s">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+          <h3>Never Quotes a Price</h3>
+          <p>Politely defers pricing to a real conversation, so you keep control of every estimate.</p>
+        </div>
+        <div class="glass-card feature-card tilt-hover reveal" style="transition-delay:0.18s">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 3v4M16 3v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <h3>Books Straight to Your Calendar</h3>
+          <p>Qualified jobs land directly on your schedule &mdash; no double-booking, no back-and-forth.</p>
+        </div>
+        <div class="glass-card feature-card tilt-hover reveal" style="transition-delay:0.24s">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10.3 3.9L2.5 18a2 2 0 001.7 3h15.6a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+          <h3>Escalates Emergencies Instantly</h3>
+          <p>Burst pipe, gas smell, no heat in freezing weather &mdash; routed straight to your phone.</p>
+        </div>
+        <div class="glass-card feature-card tilt-hover reveal" style="transition-delay:0.3s">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <h3>Full Transcript, Every Time</h3>
+          <p>Every conversation logged in one dashboard, so you always know exactly what was promised.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===================== THE MATH ===================== -->
-  <section class="math-section">
+  <section id="roi">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="dot"></span>The Math</span>
         <h2>What a missed call actually costs you</h2>
         <p>Here's an illustrative example &mdash; plug in your own numbers and see where you land.</p>
       </div>
-      <div class="math-card">
+      <div class="glass-card math-card reveal">
         <div class="math-row">
-          <span class="val highlight">10</span><span>recovered calls/mo</span>
+          <span class="val highlight">10</span><span class="lbl">recovered calls/mo</span>
           <span class="op">&times;</span>
-          <span class="val highlight">40%</span><span>booking rate</span>
+          <span class="val highlight">40%</span><span class="lbl">booking rate</span>
           <span class="op">&times;</span>
-          <span class="val highlight">$450</span><span>avg. job</span>
+          <span class="val highlight">$450</span><span class="lbl">avg. job</span>
         </div>
         <div class="math-equals">
-          <div class="math-total">$1,800/mo</div>
+          <div class="math-total text-gradient">$1,800/mo</div>
           <div class="math-total-label">in revenue that would have walked to a competitor</div>
         </div>
         <p class="math-disclaimer">Illustrative example only, not a guarantee &mdash; actual results depend on your call volume and close rate.</p>
@@ -674,28 +850,32 @@
   <!-- ===================== LIVE DEMO ===================== -->
   <section class="demo-section" id="demo">
     <div class="container">
-      <span class="eyebrow">The Site Is The Demo</span>
-      <h2>Call it. Hang up. Watch what happens.</h2>
-      <a class="demo-number" href="tel:+15555550123">(555) 555-0123</a>
-      <p class="demo-sub">You'll get a text back in seconds &mdash; the exact experience your customers will have.</p>
+      <div class="glass-card demo-card reveal">
+        <span class="eyebrow"><span class="dot"></span>The Site Is The Demo</span>
+        <h2>Call it. Hang up. Watch what happens.</h2>
+        <a class="demo-number text-gradient" href="tel:+15555550123">(555) 555-0123</a>
+        <p class="demo-sub">You'll get a text back in seconds &mdash; the exact experience your customers will have.</p>
+        <a class="btn btn-primary btn-lg" href="tel:+15555550123">Call the Live Demo &rarr;</a>
+      </div>
     </div>
   </section>
 
   <!-- ===================== TESTIMONIALS ===================== -->
-  <section class="testimonials">
+  <section id="testimonials">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="dot"></span>Results</span>
         <h2>What early clients are saying</h2>
         <p>We're onboarding our founding clients now &mdash; real quotes are coming soon.</p>
       </div>
       <div class="testimonial-grid">
-        <div class="testimonial-card">
-          <span class="quote-mark">&ldquo;</span>
+        <div class="glass-card testimonial-card tilt-hover reveal">
+          <span class="quote-mark text-gradient">&ldquo;</span>
           <p class="quote">[Placeholder &mdash; swap in a founding client's quote once you have one, e.g. "We picked up three jobs in the first week that would've just gone to voicemail before."]</p>
           <div class="attribution">[Client Name]<span>[Business Name], [Trade / City]</span></div>
         </div>
-        <div class="testimonial-card">
-          <span class="quote-mark">&ldquo;</span>
+        <div class="glass-card testimonial-card tilt-hover reveal" style="transition-delay:0.08s">
+          <span class="quote-mark text-gradient">&ldquo;</span>
           <p class="quote">[Placeholder &mdash; swap in a second founding client's quote, e.g. "It text-backs faster than I could ever call someone back myself."]</p>
           <div class="attribution">[Client Name]<span>[Business Name], [Trade / City]</span></div>
         </div>
@@ -706,15 +886,17 @@
   <!-- ===================== FINAL CTA ===================== -->
   <section class="final-cta" id="contact">
     <div class="container">
-      <h2>Find out how many calls you're losing.</h2>
-      <p>15 minutes. No pitch deck. Just your numbers.</p>
-      <a class="btn btn-primary" href="tel:+15555550123">Book a Free Call</a>
+      <div class="glass-card final-cta-card reveal">
+        <h2>Find out how many calls<br>you're losing.</h2>
+        <p>15 minutes. No pitch deck. Just your numbers.</p>
+        <a class="btn btn-primary" href="tel:+15555550123">Book a Free Call</a>
 
-      <!-- PLACEHOLDER: paste your GoHighLevel booking calendar embed code here, replacing this div. -->
-      <div class="booking-embed-slot" id="ghl-booking-embed">
-        GHL booking calendar embed goes here
+        <!-- PLACEHOLDER: paste your GoHighLevel booking calendar embed code here, replacing this div. -->
+        <div class="booking-embed-slot" id="ghl-booking-embed">
+          GHL booking calendar embed goes here
+        </div>
+        <!-- END GHL booking calendar placeholder -->
       </div>
-      <!-- END GHL booking calendar placeholder -->
     </div>
   </section>
 
@@ -722,9 +904,9 @@
 
 <footer class="site-footer">
   <div class="container">
-    <div>&copy; 2026 LeadLine. All rights reserved.</div>
+    <div>&copy; 2026 RingFix. All rights reserved.</div>
     <div class="footer-links">
-      <a href="mailto:hello@leadline.com">hello@leadline.com</a>
+      <a href="mailto:hello@ringfix.ai">hello@ringfix.ai</a>
       <a href="tel:+15555550123">(555) 555-0123</a>
     </div>
   </div>
@@ -742,47 +924,96 @@
     function playSequence() {
       if (played || !bubbles.length) return;
       played = true;
-
       if (reduceMotion) {
-        bubbles.forEach(function (el) {
-          el.classList.add('visible');
-        });
+        bubbles.forEach(function (el) { el.classList.add('visible'); });
         return;
       }
-
       bubbles.forEach(function (el, i) {
-        setTimeout(function () {
-          el.classList.add('visible');
-        }, i * 750);
+        setTimeout(function () { el.classList.add('visible'); }, i * 750);
       });
     }
 
     var phoneEl = document.getElementById('phone-mockup');
     if (phoneEl && 'IntersectionObserver' in window) {
-      var observer = new IntersectionObserver(function (entries) {
+      var smsObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            playSequence();
-            observer.disconnect();
-          }
+          if (entry.isIntersecting) { playSequence(); smsObserver.disconnect(); }
         });
       }, { threshold: 0.4 });
-      observer.observe(phoneEl);
+      smsObserver.observe(phoneEl);
     } else {
       playSequence();
     }
 
-    // ---- Subtle pointer tilt on hero phone (disabled for reduced motion / touch) ----
-    if (!reduceMotion && phoneEl && window.matchMedia('(hover: hover)').matches) {
-      var heroEl = document.querySelector('.hero');
-      heroEl.addEventListener('mousemove', function (e) {
-        var rect = heroEl.getBoundingClientRect();
+    // ---- Scroll-reveal for sections ----
+    var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+    if ('IntersectionObserver' in window) {
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+      revealEls.forEach(function (el) { revealObserver.observe(el); });
+    } else {
+      revealEls.forEach(function (el) { el.classList.add('in-view'); });
+    }
+
+    if (reduceMotion) return;
+
+    // ---- Scroll-driven parallax background blobs ----
+    var blobs = Array.prototype.slice.call(document.querySelectorAll('.blob'));
+    var ticking = false;
+    function updateParallax() {
+      var y = window.scrollY;
+      blobs.forEach(function (b) {
+        var speed = parseFloat(b.getAttribute('data-speed')) || 0.1;
+        b.style.transform = 'translate3d(0,' + (y * speed * -1) + 'px,0)';
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { window.requestAnimationFrame(updateParallax); ticking = true; }
+    }, { passive: true });
+    updateParallax();
+
+    // ---- Mouse-driven 3D depth in hero (phone + floating cards) ----
+    var scene = document.getElementById('phone-scene');
+    var floatCards = Array.prototype.slice.call(document.querySelectorAll('.float-card'));
+    if (scene && phoneEl && window.matchMedia('(hover: hover)').matches) {
+      scene.addEventListener('mousemove', function (e) {
+        var rect = scene.getBoundingClientRect();
         var x = (e.clientX - rect.left) / rect.width - 0.5;
         var y = (e.clientY - rect.top) / rect.height - 0.5;
-        phoneEl.style.transform = 'rotateY(' + (-8 + x * 10) + 'deg) rotateX(' + (3 - y * 8) + 'deg)';
+
+        phoneEl.style.transform = 'rotateY(' + (-10 + x * 14) + 'deg) rotateX(' + (4 - y * 10) + 'deg)';
+
+        floatCards.forEach(function (card) {
+          var depth = parseFloat(card.getAttribute('data-depth')) || 20;
+          card.style.transform = 'translate3d(' + (x * depth) + 'px,' + (y * depth) + 'px,0)';
+        });
       });
-      heroEl.addEventListener('mouseleave', function () {
-        phoneEl.style.transform = 'rotateY(-8deg) rotateX(3deg)';
+      scene.addEventListener('mouseleave', function () {
+        phoneEl.style.transform = 'rotateY(-10deg) rotateX(4deg)';
+        floatCards.forEach(function (card) { card.style.transform = 'translate3d(0,0,0)'; });
+      });
+    }
+
+    // ---- 3D tilt on hover for glass cards ----
+    var tiltCards = Array.prototype.slice.call(document.querySelectorAll('.tilt-hover'));
+    if (window.matchMedia('(hover: hover)').matches) {
+      tiltCards.forEach(function (card) {
+        card.addEventListener('mousemove', function (e) {
+          var rect = card.getBoundingClientRect();
+          var x = (e.clientX - rect.left) / rect.width - 0.5;
+          var y = (e.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = 'perspective(800px) rotateY(' + (x * 8) + 'deg) rotateX(' + (y * -8) + 'deg) translateY(-4px)';
+        });
+        card.addEventListener('mouseleave', function () {
+          card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) translateY(0)';
+        });
       });
     }
   })();
