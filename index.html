@@ -50,13 +50,14 @@
 <main id="main">
 
   <!-- ===================== HERO ===================== -->
-  <section class="hero parallax-host" id="top">
+  <section class="hero parallax-host grain" id="top">
     <div class="parallax-layer layer-dotgrid" data-parallax-speed="0.12" aria-hidden="true"></div>
     <div class="parallax-layer layer-ghost-icon" data-parallax-speed="0.28" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1L6.6 10.8z"/></svg>
     </div>
     <div class="container hero-grid">
       <div class="hero-copy">
+        <p class="hero-eyebrow"><span class="pulse-dot" aria-hidden="true"></span>The demo line is live right now</p>
         <h1>Stop losing jobs to the ring nobody answers.</h1>
         <p class="hero-sub">You're under a sink, on a roof, elbow-deep in a panel. The phone rings, you can't grab it — so the caller hangs up and dials the next name on the list. ReadyLine texts them back before they can do that.</p>
         <a class="tap-number" href="tel:+15550000000" data-demo-tel data-demo-phone aria-label="Call the ReadyLine demo line to try it yourself">(555) 000-0000</a>
@@ -65,7 +66,16 @@
 
       <div class="phone-wrap" data-parallax-speed="0.06">
         <div class="phone" id="phone-mockup" role="img" aria-label="Text message conversation showing a missed call from a customer with a leaking water heater turning into a booked appointment with Mike's Plumbing, all within about a minute.">
+          <div class="phone-notch" aria-hidden="true"></div>
           <div class="phone-screen">
+            <div class="phone-statusbar" aria-hidden="true">
+              <span>2:14</span>
+              <div class="phone-status-icons">
+                <svg viewBox="0 0 16 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="0.5"/><rect x="4.5" y="5" width="3" height="6" rx="0.5"/><rect x="9" y="3" width="3" height="8" rx="0.5"/><rect x="13" y="0" width="3" height="11" rx="0.5"/></svg>
+                <svg viewBox="0 0 16 11" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1 4a10 10 0 0 1 14 0"/><path d="M3.5 6.7a6.4 6.4 0 0 1 9 0"/><path d="M6.2 9.3a2.7 2.7 0 0 1 3.6 0"/></svg>
+                <span class="battery-icon"></span>
+              </div>
+            </div>
             <div class="phone-topbar">
               <div class="phone-avatar" aria-hidden="true">MP</div>
               <div>
@@ -92,16 +102,18 @@
     </div>
   </section>
 
+  <div class="divider divider-to-light" aria-hidden="true"></div>
+
   <!-- ===================== THE PROBLEM ===================== -->
   <section class="problem parallax-host">
     <div class="parallax-layer layer-ghost-icon" data-parallax-speed="0.22" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
     </div>
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal">
         <h2>Here's what actually happens.</h2>
       </div>
-      <div class="problem-copy">
+      <div class="problem-copy reveal">
         <p>Your phone rings while your hands are full. It rings out, drops to voicemail, and the caller doesn't leave one — almost nobody does anymore. They just hang up and call the next number on the page.</p>
         <p>You never see that call. You don't know the job existed. It shows up as a missed-call notification you glance at three hours later, long after someone else already sent a truck.</p>
         <p>That happens every week. Some weeks more than once a day.</p>
@@ -113,23 +125,26 @@
   <section class="how-it-works parallax-host" id="how-it-works">
     <div class="parallax-layer layer-stripes" data-parallax-speed="0.18" aria-hidden="true"></div>
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal">
         <h2>How it works</h2>
         <p>Three steps. You don't do any of them.</p>
       </div>
-      <ol class="steps">
-        <li class="step-card">
-          <span class="step-num">1</span>
+      <ol class="steps reveal-group">
+        <li class="step-card reveal">
+          <div class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 3l6 6M10 3H4v6"/><path d="M21 16.5a2 2 0 0 1-2 2A16 16 0 0 1 3.5 5a2 2 0 0 1 2-2"/></svg></div>
+          <span class="step-num" aria-hidden="true">01</span>
           <h3>The call comes in</h3>
           <p>Nothing changes about your number. When you don't pick up, that call gets forwarded — only that one.</p>
         </li>
-        <li class="step-card">
-          <span class="step-num">2</span>
+        <li class="step-card reveal">
+          <div class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v13H8l-4 4V4z"/></svg></div>
+          <span class="step-num" aria-hidden="true">02</span>
           <h3>ReadyLine texts them back</h3>
           <p>Under your business name, in seconds. It asks what they need and never quotes a price — anything odd gets sent straight to you.</p>
         </li>
-        <li class="step-card">
-          <span class="step-num">3</span>
+        <li class="step-card reveal">
+          <div class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18M8 3v3M16 3v3M8 14l2.5 2.5L16 11"/></svg></div>
+          <span class="step-num" aria-hidden="true">03</span>
           <h3>It books the job</h3>
           <p>The appointment lands on your calendar. You find out it happened, not that it was missed.</p>
         </li>
@@ -137,26 +152,31 @@
     </div>
   </section>
 
+  <div class="divider divider-to-navy" aria-hidden="true"></div>
+
   <!-- ===================== WHAT YOU KEEP CONTROL OF ===================== -->
-  <section class="control parallax-host">
+  <section class="control parallax-host grain">
     <div class="parallax-layer layer-ghost-icon" data-parallax-speed="0.24" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
     </div>
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal">
         <h2>What you keep control of</h2>
         <p>You're not handing your customers to a stranger.</p>
       </div>
-      <ul class="control-list">
-        <li>
+      <ul class="control-list reveal-group">
+        <li class="reveal">
+          <div class="control-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/><circle cx="12" cy="7" r="4"/></svg></div>
           <h3>It's your name on the text</h3>
           <p>Every message goes out as your business — not ReadyLine, not some 1-800 number. Your customer never knows anyone else is involved.</p>
         </li>
-        <li>
+        <li class="reveal">
+          <div class="control-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
           <h3>You see every conversation</h3>
           <p>Each text thread lands in an app on your phone, in real time. Nothing happens that you can't read.</p>
         </li>
-        <li>
+        <li class="reveal">
+          <div class="control-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12"/><path d="M11 11.5v-2a1.5 1.5 0 0 1 3 0V12"/><path d="M14 12v-1a1.5 1.5 0 0 1 3 0v3"/><path d="M17 14v-.5a1.5 1.5 0 0 1 3 0V16a6 6 0 0 1-6 6h-2a6 6 0 0 1-5.3-3.2L4 13.5c-.5-.9-.2-1.9.6-2.3.8-.4 1.7 0 2.2.8L8 14"/></svg></div>
           <h3>You can jump in any time</h3>
           <p>Mid-conversation, off-hours, whenever. Take over and finish it yourself with one tap, no handoff required.</p>
         </li>
@@ -164,17 +184,19 @@
     </div>
   </section>
 
+  <div class="divider divider-to-light" aria-hidden="true"></div>
+
   <!-- ===================== FINAL CTA ===================== -->
   <section class="final-cta parallax-host" id="contact">
     <div class="parallax-layer layer-glow" data-parallax-speed="0.15" aria-hidden="true"></div>
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal">
         <h2>Try it before you buy it.</h2>
         <p>Call the number below. You'll get a text back before you've put your phone down.</p>
       </div>
-      <a class="tap-number tap-number-large" href="tel:+15550000000" data-demo-tel data-demo-phone aria-label="Call the ReadyLine demo line">(555) 000-0000</a>
+      <a class="tap-number tap-number-large reveal" href="tel:+15550000000" data-demo-tel data-demo-phone aria-label="Call the ReadyLine demo line">(555) 000-0000</a>
 
-      <div class="chat-embed-slot" id="ghl-chat-widget">
+      <div class="chat-embed-slot reveal" id="ghl-chat-widget">
         <p>Live chat opens here once ReadyLine's chat line is connected.</p>
       </div>
       <!--
@@ -188,6 +210,8 @@
       -->
     </div>
   </section>
+
+  <div class="divider divider-to-deep" aria-hidden="true"></div>
 
 </main>
 

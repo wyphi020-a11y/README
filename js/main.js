@@ -147,6 +147,35 @@
     apply();
   }
 
+  /* ==========================================================================
+     Scroll reveals — content fades/rises into place once. Under
+     prefers-reduced-motion the CSS itself renders everything visible with
+     no transition, so this simply never runs.
+     ========================================================================== */
+  function initReveals() {
+    if (reduceMotion) return;
+
+    var targets = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+    if (!targets.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+
+    targets.forEach(function (el) { observer.observe(el); });
+  }
+
   initSmsDemo();
   initParallax();
+  initReveals();
 })();

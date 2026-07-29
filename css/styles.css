@@ -7,6 +7,7 @@
   --offwhite: #F5F4EF;
   --white: #FFFFFF;
   --orange: #FF6A13;
+  --orange-dark: #C64F0C;
   --muted: #5B6572;
 
   --font-display: 'Archivo', Arial, sans-serif;
@@ -14,6 +15,10 @@
 
   --max-width: 1080px;
   --radius: 12px;
+  --edge: 44px;
+}
+@media (min-width: 720px) {
+  :root { --edge: 68px; }
 }
 
 /* ==========================================================================
@@ -38,8 +43,8 @@ a { color: inherit; text-decoration: none; }
 h1, h2, h3 {
   font-family: var(--font-display);
   color: var(--navy);
-  line-height: 1.12;
-  letter-spacing: -0.01em;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
   font-weight: 900;
 }
 
@@ -55,7 +60,7 @@ ol, ul { list-style: none; }
 section { padding: 56px 0; }
 
 @media (min-width: 720px) {
-  section { padding: 88px 0; }
+  section { padding: 96px 0; }
 }
 
 /* ==========================================================================
@@ -83,6 +88,56 @@ section { padding: 56px 0; }
 @media (prefers-reduced-motion: reduce) {
   .parallax-layer { will-change: auto; }
 }
+
+/* Fine film-grain texture on dark sections — cheap (single SVG data URI),
+   adds tactile depth instead of flat color fields. */
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   Scroll reveals
+   Content — never decorative layers — fades and rises into place. Disabled
+   entirely under prefers-reduced-motion (JS never adds the observer and
+   everything renders in its resting, visible state immediately).
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s cubic-bezier(0.16, 0.84, 0.32, 1), transform 0.7s cubic-bezier(0.16, 0.84, 0.32, 1);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+.reveal-group > *:nth-child(1) { transition-delay: 0s; }
+.reveal-group > *:nth-child(2) { transition-delay: 0.1s; }
+.reveal-group > *:nth-child(3) { transition-delay: 0.2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; opacity: 1; transform: none; }
+}
+
+/* Angled section seams — replaces flat stacked rectangles with a cut edge. */
+.divider {
+  height: 34px;
+  width: 100%;
+  margin: -1px 0;
+  position: relative;
+  z-index: 2;
+}
+@media (min-width: 720px) {
+  .divider { height: 56px; }
+}
+.divider-to-light { background: var(--offwhite); clip-path: polygon(0 100%, 100% 40%, 100% 100%); }
+.divider-to-white { background: var(--white); clip-path: polygon(0 40%, 100% 100%, 0 100%); }
+.divider-to-navy { background: var(--navy); clip-path: polygon(0 100%, 100% 40%, 100% 100%); }
+.divider-to-deep { background: var(--navy-deep); clip-path: polygon(0 40%, 100% 100%, 0 100%); }
 
 /* Skip link */
 .skip-link {
@@ -147,8 +202,9 @@ a:focus-visible {
   padding: 10px 14px;
   border-radius: 999px;
   white-space: nowrap;
+  transition: transform 0.15s ease;
 }
-.header-call:hover { background: #E85F0F; }
+.header-call:hover { background: #E85F0F; transform: translateY(-1px); }
 .header-call-icon {
   width: 16px;
   height: 16px;
@@ -160,6 +216,7 @@ a:focus-visible {
    Buttons / tap targets
    ========================================================================== */
 .tap-number {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -175,13 +232,29 @@ a:focus-visible {
   width: 100%;
   max-width: 420px;
   text-align: center;
-  box-shadow: 0 8px 0 #C64F0C;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  box-shadow: 0 8px 0 var(--orange-dark);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+  overflow: hidden;
 }
-.tap-number:hover { background: #E85F0F; }
+.tap-number::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255,255,255,0.55), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+@media (hover: hover) {
+  .tap-number:hover { background: #E85F0F; transform: translateY(-2px); box-shadow: 0 10px 0 var(--orange-dark); }
+  .tap-number:hover::after { left: 130%; }
+}
 .tap-number:active {
   transform: translateY(4px);
-  box-shadow: 0 4px 0 #C64F0C;
+  box-shadow: 0 4px 0 var(--orange-dark);
 }
 
 .tap-number-large {
@@ -207,7 +280,7 @@ a:focus-visible {
 .hero {
   background: var(--navy);
   color: var(--white);
-  padding: 40px 0 56px;
+  padding: 44px 0 64px;
 }
 .hero-grid {
   display: flex;
@@ -215,7 +288,7 @@ a:focus-visible {
   gap: 40px;
 }
 @media (min-width: 900px) {
-  .hero { padding: 72px 0 96px; }
+  .hero { padding: 84px 0 112px; }
   .hero-grid {
     flex-direction: row;
     align-items: center;
@@ -227,17 +300,52 @@ a:focus-visible {
 
 .hero-copy { display: flex; flex-direction: column; align-items: flex-start; }
 
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 18px;
+}
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--orange);
+  position: relative;
+  flex-shrink: 0;
+}
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid var(--orange);
+  animation: pulse-ring 2.2s ease-out infinite;
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.5); opacity: 0.9; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse-dot::after { animation: none; opacity: 0; }
+}
+
 .hero h1 {
   color: var(--white);
-  font-size: clamp(1.9rem, 6vw, 2.9rem);
-  margin-bottom: 18px;
+  font-size: clamp(2.2rem, 7.2vw, 3.6rem);
+  margin-bottom: 20px;
 }
 
 .hero-sub {
   color: rgba(255,255,255,0.82);
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   max-width: 48ch;
-  margin-bottom: 28px;
+  margin-bottom: 30px;
 }
 
 .layer-dotgrid {
@@ -267,26 +375,81 @@ a:focus-visible {
 }
 
 .phone {
+  position: relative;
   width: 100%;
   max-width: 320px;
-  background: var(--navy-deep);
-  border-radius: 32px;
+  background: linear-gradient(155deg, #17222f 0%, var(--navy-deep) 60%);
+  border-radius: 34px;
   padding: 10px;
-  box-shadow: 0 24px 48px rgba(0,0,0,0.35);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.phone-notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92px;
+  height: 22px;
+  background: var(--navy-deep);
+  border-radius: 0 0 16px 16px;
+  z-index: 3;
 }
 
 .phone-screen {
+  position: relative;
   background: var(--offwhite);
-  border-radius: 22px;
-  min-height: 440px;
+  border-radius: 24px;
+  min-height: 460px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
+/* Subtle glass highlight across the top of the screen */
+.phone-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 22%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.phone-statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 20px 2px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+}
+.phone-status-icons { display: flex; align-items: center; gap: 4px; }
+.phone-status-icons svg { width: 15px; height: 11px; }
+.battery-icon {
+  width: 20px;
+  height: 10px;
+  border: 1.2px solid var(--navy);
+  border-radius: 2px;
+  padding: 1px;
+  position: relative;
+}
+.battery-icon::before { content: ''; display: block; width: 75%; height: 100%; background: var(--navy); border-radius: 1px; }
+.battery-icon::after {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: 3px;
+  width: 2px;
+  height: 4px;
+  background: var(--navy);
+  border-radius: 0 1px 1px 0;
+}
 
 .phone-topbar {
   background: var(--white);
-  padding: 12px 14px 10px;
+  padding: 10px 14px 10px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -408,7 +571,7 @@ a:focus-visible {
   text-align: center;
   color: rgba(255,255,255,0.72);
   font-size: 0.88rem;
-  margin-top: 18px;
+  margin-top: 20px;
   max-width: 300px;
 }
 
@@ -422,22 +585,22 @@ a:focus-visible {
    ========================================================================== */
 .section-head {
   max-width: 640px;
-  margin: 0 0 32px;
+  margin: 0 0 36px;
 }
 .section-head h2 {
-  font-size: clamp(1.6rem, 5vw, 2.1rem);
-  margin-bottom: 10px;
+  font-size: clamp(1.8rem, 5.4vw, 2.4rem);
+  margin-bottom: 12px;
 }
 .section-head p {
   color: var(--muted);
-  font-size: 1.02rem;
+  font-size: 1.04rem;
 }
 
 /* ==========================================================================
    The problem
    ========================================================================== */
 .problem-copy p {
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   max-width: 62ch;
   margin-bottom: 16px;
   color: var(--navy);
@@ -472,18 +635,30 @@ a:focus-visible {
   background: var(--offwhite);
   border-left: 4px solid var(--orange);
   border-radius: 6px;
-  padding: 24px 22px;
+  padding: 26px 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+@media (hover: hover) {
+  .step-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(20,32,46,0.1); }
+}
+.step-icon {
+  width: 34px;
+  height: 34px;
+  color: var(--orange);
+  margin-bottom: 14px;
+}
+.step-icon svg { width: 100%; height: 100%; }
 .step-num {
   display: inline-block;
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: var(--navy);
-  margin-bottom: 10px;
+  opacity: 0.28;
+  margin-bottom: 4px;
 }
 .step-card h3 {
-  font-size: 1.1rem;
+  font-size: 1.14rem;
   margin-bottom: 8px;
 }
 .step-card p {
@@ -511,14 +686,21 @@ a:focus-visible {
 .control-list {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: 28px;
 }
 @media (min-width: 720px) {
   .control-list { grid-template-columns: repeat(3, 1fr); }
 }
+.control-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--orange);
+  margin-bottom: 14px;
+}
+.control-icon svg { width: 100%; height: 100%; }
 .control-list h3 {
   color: var(--white);
-  font-size: 1.08rem;
+  font-size: 1.1rem;
   margin-bottom: 8px;
 }
 .control-list p {
