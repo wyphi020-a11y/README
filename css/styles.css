@@ -58,6 +58,32 @@ section { padding: 56px 0; }
   section { padding: 88px 0; }
 }
 
+/* ==========================================================================
+   Parallax layers
+   Decorative depth only — never applied to body text or tap targets, so
+   reading and tapping stay stable no matter what the background is doing.
+   JS drives the transform; with no JS or under prefers-reduced-motion the
+   layers simply sit at rest, fully inert.
+   ========================================================================== */
+.parallax-host {
+  position: relative;
+  overflow: hidden;
+}
+.parallax-host > .container {
+  position: relative;
+  z-index: 1;
+}
+.parallax-layer {
+  position: absolute;
+  inset: -10% -10%;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .parallax-layer { will-change: auto; }
+}
+
 /* Skip link */
 .skip-link {
   position: absolute;
@@ -212,6 +238,23 @@ a:focus-visible {
   font-size: 1.05rem;
   max-width: 48ch;
   margin-bottom: 28px;
+}
+
+.layer-dotgrid {
+  background-image: radial-gradient(rgba(255,255,255,0.14) 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+}
+
+.layer-ghost-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 2%;
+}
+.layer-ghost-icon svg {
+  width: min(64vw, 620px);
+  height: auto;
+  color: rgba(255,255,255,0.05);
 }
 
 /* ==========================================================================
@@ -401,6 +444,16 @@ a:focus-visible {
 }
 .problem-copy p:last-child { margin-bottom: 0; }
 
+.problem .layer-ghost-icon {
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-top: 4%;
+}
+.problem .layer-ghost-icon svg {
+  width: min(52vw, 460px);
+  color: rgba(20,32,46,0.045);
+}
+
 /* ==========================================================================
    How it works
    ========================================================================== */
@@ -438,6 +491,16 @@ a:focus-visible {
   font-size: 0.96rem;
 }
 
+.layer-stripes {
+  background-image: repeating-linear-gradient(
+    -35deg,
+    rgba(255,106,19,0.06) 0px,
+    rgba(255,106,19,0.06) 2px,
+    transparent 2px,
+    transparent 34px
+  );
+}
+
 /* ==========================================================================
    Control section
    ========================================================================== */
@@ -461,6 +524,17 @@ a:focus-visible {
 .control-list p {
   color: rgba(255,255,255,0.72);
   font-size: 0.96rem;
+}
+
+.control .layer-ghost-icon {
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding-left: 2%;
+  padding-bottom: 2%;
+}
+.control .layer-ghost-icon svg {
+  width: min(56vw, 500px);
+  color: rgba(255,255,255,0.05);
 }
 
 /* ==========================================================================
@@ -487,6 +561,10 @@ a:focus-visible {
 .chat-embed-slot p {
   color: var(--muted);
   font-size: 0.88rem;
+}
+
+.layer-glow {
+  background: radial-gradient(circle at 50% 40%, rgba(255,106,19,0.16), transparent 60%);
 }
 
 /* ==========================================================================

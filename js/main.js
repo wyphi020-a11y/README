@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   /* ==========================================================================
      Demo phone number — the ONE place to edit when the real GHL line is live.
      ========================================================================== */
@@ -19,92 +21,132 @@
   /* ==========================================================================
      Hero SMS thread animation
      ========================================================================== */
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var thread = document.getElementById('sms-thread');
-  if (!thread) return;
+  function initSmsDemo() {
+    var thread = document.getElementById('sms-thread');
+    if (!thread) return;
 
-  var bubbles = Array.prototype.slice.call(thread.querySelectorAll('.sms-bubble, .sms-system'));
-  var typers = Array.prototype.slice.call(thread.querySelectorAll('.sms-typing'));
+    var bubbles = Array.prototype.slice.call(thread.querySelectorAll('.sms-bubble, .sms-system'));
+    var typers = Array.prototype.slice.call(thread.querySelectorAll('.sms-typing'));
 
-  function showFinalState() {
-    bubbles.forEach(function (el) { el.classList.add('visible'); });
-    typers.forEach(function (el) { el.classList.remove('visible'); });
-  }
+    function showFinalState() {
+      bubbles.forEach(function (el) { el.classList.add('visible'); });
+      typers.forEach(function (el) { el.classList.remove('visible'); });
+    }
 
-  if (reduceMotion) {
-    showFinalState();
-    return;
-  }
+    if (reduceMotion) {
+      showFinalState();
+      return;
+    }
 
-  // Uneven, human-feeling delays between beats (ms).
-  var timeline = [
-    { type: 'bubble', step: '0', delay: 500 },
-    { type: 'typing', forStep: '1', delay: 900 },
-    { type: 'bubble', step: '1', delay: 1300 },
-    { type: 'typing', forStep: '2', delay: 1100 },
-    { type: 'bubble', step: '2', delay: 2200 },
-    { type: 'typing', forStep: '3', delay: 700 },
-    { type: 'bubble', step: '3', delay: 1600 },
-    { type: 'typing', forStep: '4', delay: 900 },
-    { type: 'bubble', step: '4', delay: 800 },
-    { type: 'bubble', step: '5', delay: 1300 }
-  ];
-  var pauseAtEnd = 4000;
+    // Uneven, human-feeling delays between beats (ms).
+    var timeline = [
+      { type: 'bubble', step: '0', delay: 500 },
+      { type: 'typing', forStep: '1', delay: 900 },
+      { type: 'bubble', step: '1', delay: 1300 },
+      { type: 'typing', forStep: '2', delay: 1100 },
+      { type: 'bubble', step: '2', delay: 2200 },
+      { type: 'typing', forStep: '3', delay: 700 },
+      { type: 'bubble', step: '3', delay: 1600 },
+      { type: 'typing', forStep: '4', delay: 900 },
+      { type: 'bubble', step: '4', delay: 800 },
+      { type: 'bubble', step: '5', delay: 1300 }
+    ];
+    var pauseAtEnd = 4000;
 
-  var byStep = {};
-  bubbles.forEach(function (el) { byStep[el.getAttribute('data-step')] = el; });
-  var typingByStep = {};
-  typers.forEach(function (el) { typingByStep[el.getAttribute('data-typing-for')] = el; });
+    var byStep = {};
+    bubbles.forEach(function (el) { byStep[el.getAttribute('data-step')] = el; });
+    var typingByStep = {};
+    typers.forEach(function (el) { typingByStep[el.getAttribute('data-typing-for')] = el; });
 
-  var timers = [];
+    function reset() {
+      bubbles.forEach(function (el) { el.classList.remove('visible'); });
+      typers.forEach(function (el) { el.classList.remove('visible'); });
+    }
 
-  function reset() {
-    bubbles.forEach(function (el) { el.classList.remove('visible'); });
-    typers.forEach(function (el) { el.classList.remove('visible'); });
-  }
-
-  function runOnce() {
-    var elapsed = 0;
-    timeline.forEach(function (beat) {
-      elapsed += beat.delay;
-      timers.push(setTimeout(function () {
-        if (beat.type === 'typing') {
-          var typingEl = typingByStep[beat.forStep];
-          if (typingEl) typingEl.classList.add('visible');
-        } else {
-          var bubbleEl = byStep[beat.step];
-          if (bubbleEl) bubbleEl.classList.add('visible');
-          var priorTyping = typingByStep[beat.step];
-          if (priorTyping) priorTyping.classList.remove('visible');
-        }
-      }, elapsed));
-    });
-    timers.push(setTimeout(function () {
-      reset();
-      runOnce();
-    }, elapsed + pauseAtEnd));
-  }
-
-  var started = false;
-  var phoneEl = document.getElementById('phone-mockup');
-
-  function start() {
-    if (started) return;
-    started = true;
-    runOnce();
-  }
-
-  if (phoneEl && 'IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          start();
-          observer.disconnect();
-        }
+    function runOnce() {
+      var elapsed = 0;
+      timeline.forEach(function (beat) {
+        elapsed += beat.delay;
+        setTimeout(function () {
+          if (beat.type === 'typing') {
+            var typingEl = typingByStep[beat.forStep];
+            if (typingEl) typingEl.classList.add('visible');
+          } else {
+            var bubbleEl = byStep[beat.step];
+            if (bubbleEl) bubbleEl.classList.add('visible');
+            var priorTyping = typingByStep[beat.step];
+            if (priorTyping) priorTyping.classList.remove('visible');
+          }
+        }, elapsed);
       });
-    }, { threshold: 0.35 });
-    observer.observe(phoneEl);
-  } else {
-    start();
+      setTimeout(function () {
+        reset();
+        runOnce();
+      }, elapsed + pauseAtEnd);
+    }
+
+    var started = false;
+    var phoneEl = document.getElementById('phone-mockup');
+
+    function start() {
+      if (started) return;
+      started = true;
+      runOnce();
+    }
+
+    if (phoneEl && 'IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            start();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.35 });
+      observer.observe(phoneEl);
+    } else {
+      start();
+    }
   }
+
+  /* ==========================================================================
+     Scroll parallax — decorative background layers + a subtle phone float.
+     Never applied to body text or tap targets, so reading and tapping stay
+     rock-steady. Fully disabled under prefers-reduced-motion: layers just
+     sit at rest, and the scroll listener is never attached.
+     ========================================================================== */
+  function initParallax() {
+    if (reduceMotion) return;
+
+    var layers = Array.prototype.slice.call(document.querySelectorAll('[data-parallax-speed]'));
+    if (!layers.length) return;
+
+    var ticking = false;
+
+    function apply() {
+      var viewportMid = window.innerHeight / 2;
+      layers.forEach(function (el) {
+        var speed = parseFloat(el.getAttribute('data-parallax-speed')) || 0;
+        var rect = el.getBoundingClientRect();
+        var elMid = rect.top + rect.height / 2;
+        var offset = (viewportMid - elMid) * speed;
+        el.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
+      });
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(apply);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    apply();
+  }
+
+  initSmsDemo();
+  initParallax();
 })();
